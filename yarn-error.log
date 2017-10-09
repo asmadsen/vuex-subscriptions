@@ -15,8 +15,8 @@ Platform:
 
 npm manifest: 
   {
-    "name": "Vuex-Subscriptions",
-    "version": "1.0.0",
+    "name": "vuex-subscriptions",
+    "version": "1.0.1",
     "description": "Subscribe to Vuex mutations",
     "scripts": {
       "build": "./node_modules/.bin/rimraf ./dist && ./node_modules/.bin/tsc ./src/index.ts -d --outDir ./dist"
@@ -32,10 +32,10 @@ npm manifest:
       "babel-preset-typescript": "^7.0.0-alpha.19",
       "rimraf": "^2.6.2",
       "typescript": "^2.5.3",
-      "vue": "^2.4.4"
+      "vue": "^2.0.0"
     },
     "dependencies": {
-      "vuex": "^2.4.1"
+      "vuex": "^2.0.0"
     }
   }
 
@@ -1698,14 +1698,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
 
 Trace: 
-  Error: https://registry.yarnpkg.com/Vuex-Subscriptions: "Vuex-Subscriptions" is invalid for new packages
-      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:61779:18)
-      at Request.self.callback (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:121917:22)
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:119877:13)
+      at emitNone (events.js:86:13)
+      at Interface.emit (events.js:185:7)
+      at Interface._ttyWrite (readline.js:724:16)
+      at ReadStream.onkeypress (readline.js:119:10)
       at emitTwo (events.js:106:13)
-      at Request.emit (events.js:191:7)
-      at Request.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122900:10)
-      at emitOne (events.js:96:13)
-      at Request.emit (events.js:188:7)
-      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.1.0/libexec/lib/cli.js:122820:12)
-      at IncomingMessage.g (events.js:292:16)
-      at emitNone (events.js:91:20)
+      at ReadStream.emit (events.js:191:7)
+      at emitKeys (internal/readline.js:389:14)
+      at next (native)
+      at ReadStream.onData (readline.js:970:36)

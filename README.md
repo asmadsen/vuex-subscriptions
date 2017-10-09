@@ -39,7 +39,7 @@ const store = new Vuex.Store({
 
 ## API
 
-### `createPersistedState([options])`
+### `addSubscriptions([options])`
 
 Creates a new instance of the plugin with the given options. The following options
 **HAS TO** be provided to configure the plugin for your specific needs:
