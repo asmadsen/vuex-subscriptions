@@ -1,0 +1,9 @@
+{
+  "name": "Vuex-Subscriptions",
+  "version": "1.0.0",
+  "description": "Subscribe to Vuex mutations",
+  "main": "dist/index.js",
+  "repository": "https://github.com/asmadsen/vuex-subscriptions",
+  "author": "Andreas Storesund Madsen <andreas@asmadsen.no>",
+  "license": "MIT"
+}
