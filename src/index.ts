@@ -17,7 +17,7 @@ export default function addSubscriptions({
 	subscriber = store => handler => store.subscribe(handler)
 										 } = {}) {
 	for (let sub in subscriptions) {
-		if (_subscriptions[sub] !== undefined) {
+		if (_subscriptions[sub] === undefined) {
 			_subscriptions[sub] = <Array<(state: any) => any>>[]
 		}
 		_subscriptions[sub].push(subscriptions[sub]);

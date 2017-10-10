@@ -7,7 +7,7 @@ var pushSubscriptions = function (state, subscriptions) {
 function addSubscriptions(_a) {
     var _b = _a === void 0 ? {} : _a, _c = _b.subscriptions, subscriptions = _c === void 0 ? {} : _c, _d = _b.subscriber, subscriber = _d === void 0 ? function (store) { return function (handler) { return store.subscribe(handler); }; } : _d;
     for (var sub in subscriptions) {
-        if (_subscriptions[sub] !== undefined) {
+        if (_subscriptions[sub] === undefined) {
             _subscriptions[sub] = [];
         }
         _subscriptions[sub].push(subscriptions[sub]);
