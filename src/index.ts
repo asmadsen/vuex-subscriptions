@@ -1,31 +1,40 @@
 import {Store} from "vuex";
 
-export declare interface subscriptions {
-	[propName: string]: (state: any) => any|Array<(state: any) => any>
+export declare interface subscription {
+	(state: any): any
 }
 
-const _subscriptions : {
+export declare interface subscriptions {
+	[propName: string]: subscription | subscription[]
+}
+
+const _subscriptions: {
 	[propName: string]: Array<(state: any) => any>
 } = {};
 
-const pushSubscriptions = (state : Store<any>, subscriptions : Array<(state: any) => any>) => {
+const pushSubscriptions = (state: Store<any>, subscriptions: Array<(state: any) => any>) => {
 	subscriptions.forEach(subscription => subscription(state))
 };
 
 export default function addSubscriptions({
-	subscriptions = <subscriptions>{},
-	subscriber = store => handler => store.subscribe(handler)
+											 subscriptions = <subscriptions>{},
+											 subscriber = store => handler => store.subscribe(handler)
 										 } = {}) {
-	for (let sub in subscriptions) {
-		if (_subscriptions[sub] === undefined) {
-			_subscriptions[sub] = <Array<(state: any) => any>>[]
+	Object.entries(subscriptions).reduce((prev, [key, value]) => {
+		if (!Array.isArray(value)) {
+			value = [value]
 		}
-		_subscriptions[sub].push(subscriptions[sub]);
-	}
+		if (!prev.hasOwnProperty(key)) {
+			_subscriptions[key] = []
+		}
+		_subscriptions[key] = _subscriptions[key].concat(value)
+		return _subscriptions
+	}, _subscriptions)
+
 	return store => {
 		subscriber(store)((mutation, state) => {
-			if (_subscriptions.hasOwnProperty(mutation)) {
-				pushSubscriptions(state, _subscriptions[mutation]);
+			if (_subscriptions.hasOwnProperty(mutation.type)) {
+				pushSubscriptions(state, _subscriptions[mutation.type]);
 			}
 		});
 	}

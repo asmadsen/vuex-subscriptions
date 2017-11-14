@@ -1,4 +1,10 @@
 {
-  "presets": ["typescript"],
-  "plugins": []
+  "presets": ["es2017"],
+  "plugins": ["transform-class-properties"],
+  "env": {
+    "test": {
+      "presets": ["env", "stage-2"],
+      "plugins": [ "istanbul" ]
+    }
+  }
 }
