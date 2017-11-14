@@ -1,18 +1,24 @@
 {
   "compilerOptions": {
-	"module":    "commonjs",
-	"target":    "es2017",
-	"sourceMap": true,
-	"noImplicitAny": false,
-	"types": [
-	  "node",
+	"target":                       "es5",
+	"sourceMap":                    true,
+	"declaration":                  true,
+	"outDir":                       "",
+	"noImplicitAny":                false,
+	"moduleResolution":             "node",
+	"allowSyntheticDefaultImports": true,
+	"lib":                          [
+	  "es2017",
+	  "dom",
+	  "es2016"
+	],
+	"types":                        [
 	  "webpack-env",
-	  "sinon-chai",
 	  "mocha",
 	  "chai"
 	]
   },
-  "exclude":         [
-	"node_modules"
+  "files": [
+	"src/index.ts"
   ]
 }

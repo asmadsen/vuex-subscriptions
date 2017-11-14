@@ -156,5 +156,6 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/node,macos,webstorm
 
-
-dist/
+index.d.ts
+index.js
+index.js.map

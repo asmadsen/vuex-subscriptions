@@ -1,5 +1,5 @@
 {
-  "presets": ["es2017"],
+  "presets": ["typescript"],
   "plugins": ["transform-class-properties"],
   "env": {
     "test": {
