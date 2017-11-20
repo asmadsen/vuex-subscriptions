@@ -25,15 +25,21 @@ $ npm install vuex-subscriptions
 ```js
 import addSubscriptions from 'vuex-subscriptions'
 
+const modules = {
+	// Modules
+}
+
 const store = new Vuex.Store({
   // ...
   plugins: [
   	addSubscriptions({
   		subscriptions: {
   			// Options...
-  		}
+  		},
+  		modules
   	})
-  ]
+  ],
+  modules
 })
 ```
 
@@ -45,6 +51,7 @@ Creates a new instance of the plugin with the given options. The following optio
 **HAS TO** be provided to configure the plugin for your specific needs:
 
 - `subscriptions <Object>`: The keys are the mutations you want to listen for(including namespaces divided my forward-slash) and the value is the a callback function witch takes the state.
+- `modules <ModuleTree<any>>`: You could add the subscriptions inside your modules, and have it be namespaced.
 
 ## Example
 
@@ -60,14 +67,14 @@ const store = new Store({
   plugins: [
     addSubscriptions({
       subscriptions: {
-      	"user/loggedIn": (state) => {
+      	"user/loggedIn": (state, store) => {
       		// fetch profile info
       	},
       	"user/loggedOut": [
-      		(state) => {
+      		(state, store) => {
       			// delete some data
       		},
-      		(state) => {
+      		(state, store) => {
       			// navigate to another route
       		}
       	]
