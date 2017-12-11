@@ -4,6 +4,7 @@
 	"sourceMap":                    true,
 	"declaration":                  true,
 	"outDir":                       "",
+	"strict":						true,
 	"noImplicitAny":                false,
 	"moduleResolution":             "node",
 	"allowSyntheticDefaultImports": true,

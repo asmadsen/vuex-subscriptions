@@ -27,7 +27,7 @@ export default function addSubscriptions({
 											 modules = <ModuleTree<any>>{},
 											 subscriptions = <subscriptions>{},
 											 subscriber = store => handler => store.subscribe(handler)
-										 } = {}) {
+										 }) {
 	if (modules) {
 		subscriptions = Object.entries(modules).reduce((prev, [key, _module]) => {
 			if (_module.hasOwnProperty('subscriptions')) {
