@@ -8,26 +8,27 @@ declare module 'vuex/types/index' {
 }
 
 export interface subscription {
-	(state: any, store: Store<any>): any
+	(store: Store<any>): any
 }
 
 export interface subscriptions {
 	[propName: string]: subscription | subscription[]
 }
 
-let _subscriptions: {
-	[propName: string]: Array<(state: any, store?: Store<any>) => any>
-} = {};
-
-const pushSubscriptions = (state: any, store: Store<any> , subscriptions: Array<subscription>) => {
-	subscriptions.forEach(subscription => subscription(state, store))
-};
 
 export default function addSubscriptions({
 											 modules = <ModuleTree<any>>{},
 											 subscriptions = <subscriptions>{},
 											 subscriber = store => handler => store.subscribe(handler)
 										 }) {
+	let _subscriptions: {
+		[propName: string]: Array<(store: Store<any>) => any>
+	} = {};
+
+	const pushSubscriptions = (store: Store<any> , subscriptions: Array<subscription>) => {
+		subscriptions.forEach(subscription => subscription(store))
+	};
+
 	if (modules) {
 		subscriptions = Object.entries(modules).reduce((prev, [key, _module]) => {
 			if (_module.hasOwnProperty('subscriptions')) {
@@ -52,9 +53,9 @@ export default function addSubscriptions({
 	}, _subscriptions)
 
 	return store => {
-		subscriber(store)((mutation, state) => {
+		subscriber(store)((mutation) => {
 			if (_subscriptions.hasOwnProperty(mutation.type)) {
-				pushSubscriptions(state, store, _subscriptions[mutation.type]);
+				pushSubscriptions(store, _subscriptions[mutation.type]);
 			}
 		});
 	}

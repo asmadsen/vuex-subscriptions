@@ -3,6 +3,9 @@ import Vuex from "vuex"
 import addSubscriptions from "./../../src"
 import {expect} from "chai";
 
+Vue.config.productionTip = false
+Vue.config.devtools = false
+
 
 describe("Subscription", () => {
 
@@ -12,8 +15,8 @@ describe("Subscription", () => {
 			plugins:   [
 				addSubscriptions({
 					subscriptions: {
-						changeProperty: (state) => {
-							store.commit("setDone", true);
+						changeProperty: ({state, commit}) => {
+							commit("setDone", true);
 						}
 					}
 				})
@@ -30,11 +33,6 @@ describe("Subscription", () => {
 					state.property = "changed again";
 					state.done     = payload;
 				}
-			},
-			modules: {
-				user: {
-
-				}
 			}
 		})
 		store.commit("changeProperty", "changed");
@@ -48,11 +46,11 @@ describe("Subscription", () => {
 				addSubscriptions({
 					subscriptions: {
 						changeProperty: [
-							(state) => {
-								store.commit('updateFirst', true)
+							({commit}) => {
+								commit('updateFirst', true)
 							},
-							(state) => {
-								store.commit('updateSecond', true)
+							({commit}) => {
+								commit('updateSecond', true)
 							}
 						]
 					}
@@ -86,8 +84,8 @@ describe("Subscription", () => {
 			user: {
 				namespaced: true,
 				subscriptions: {
-					changeProperty(state) {
-						store.commit('user/changeFirst', true)
+					changeProperty({commit}) {
+						commit('user/changeFirst', true)
 					}
 				},
 				state: {
